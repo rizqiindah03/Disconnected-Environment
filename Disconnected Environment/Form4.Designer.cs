@@ -176,7 +176,6 @@
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form4";
-            this.Text = "Data Status Mahasiswa";
             this.Load += new System.EventHandler(this.Form4_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

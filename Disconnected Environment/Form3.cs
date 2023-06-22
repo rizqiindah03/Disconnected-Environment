@@ -19,7 +19,7 @@ namespace Disconnected_Environment
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+             
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace Disconnected_Environment
         private void FormDataMahasiswa_Load()
         {
             koneksi.Open();
-            SqlDataAdapter dataAdapter1 = new SqlDataAdapter(new SqlCommand("Select m.nim, m.nama_MMahasiswa," + "m.alamat, m.jenis_kelamin, m.tgl_lahir, p.nama_prodi, From dbo.MMahasiswa m " + "join dbo.Prodi p on m.id_prodi = p.id_prodi", koneksi));
+            SqlDataAdapter dataAdapter1 = new SqlDataAdapter(new SqlCommand("Select m.nim, m.nama_MMahasiswa," + "m.alamat, m.jenis_kelamin, m.tgl_lahir, p.nama_prodi From dbo.MMahasiswa m " + "join dbo.Prodi p on m.id_prrodi = p.id_prodi", koneksi));
             DataSet ds = new DataSet();
             dataAdapter1.Fill(ds);
 
@@ -68,20 +68,17 @@ namespace Disconnected_Environment
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            txtNIM.Text = "";
-            txtNama.Text = "";
-            labelAlamat.Text = "";
             dtTanggalLahir.Value = DateTime.Today;
             txtNIM.Enabled = true;
             txtNama.Enabled = true;
-            labelJenisKelamin.Enabled = true;
-            labelAlamat.Enabled = true;
-            labelTgl.Enabled = true;
-            labelProdi.Enabled = true;
+            cbxJenisKelamin.Enabled = true;
+            txtAlamat.Enabled = true;
+            dtTanggalLahir.Enabled = true;
+            cbxProdi.Enabled = true;
             Prodicbx();
             btnSave.Enabled = true;
             btnClear.Enabled = true;
-            btnAdd.Enabled = false;
+            btnAdd.Enabled = true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -119,6 +116,11 @@ namespace Disconnected_Environment
 
             MessageBox.Show("Data Berhasil Disimpan", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             refreshform();
+        }
+
+        private void form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void refreshform()

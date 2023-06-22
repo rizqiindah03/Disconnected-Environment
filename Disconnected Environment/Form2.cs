@@ -31,6 +31,7 @@ namespace Disconnected_Environment
             nmp.Enabled = false;
             btnSave.Enabled = false;
             btnClear.Enabled = false;
+            btnAdd.Enabled = true;
         }
         private void dataGridView()
         {
@@ -50,9 +51,7 @@ namespace Disconnected_Environment
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            nmp.Enabled = true;
-            btnSave.Enabled = true;
-            btnClear.Enabled = true;
+            
         }
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -66,6 +65,7 @@ namespace Disconnected_Environment
         private void btnSave_Click(object sender, EventArgs e)
         {
             string nmProdi = nmp.Text;
+            string idPrd = txtID.Text;
 
             if (nmProdi == "")
             {
@@ -74,12 +74,12 @@ namespace Disconnected_Environment
             else
             {
                 koneksi.Open();
-                string str = "insert into dbo.prodi (nama_prodi)" + "values(@id)";
+                string str = "insert into dbo.prodi (id_prodi, nama_prodi)" + "values(@id_prodi, @nama_prodi)";
                 SqlCommand cmd = new SqlCommand(str, koneksi);
                 cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Add(new SqlParameter("id", nmProdi));
+                cmd.Parameters.Add(new SqlParameter("id_prodi", idPrd));
+                cmd.Parameters.Add(new SqlParameter("nama_prodi", nmProdi));
                 cmd.ExecuteNonQuery();
-
                 koneksi.Close();
                 MessageBox.Show("Data Berhasil Disimpan", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dataGridView();
@@ -91,6 +91,13 @@ namespace Disconnected_Environment
             FormHalamanUtama hu = new FormHalamanUtama();
             hu.Show();
             this.Hide();
+        }
+
+        private void btnAdd_Click_1(object sender, EventArgs e)
+        {
+            nmp.Enabled = true;
+            btnSave.Enabled = true;
+            btnClear.Enabled = true;
         }
     }
 }
